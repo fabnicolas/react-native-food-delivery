@@ -1,29 +1,20 @@
-import React, {Component} from 'react';
-import {ImageBackground, Image, View, StyleSheet} from 'react-native';
+import React from 'react';
+import {Image, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from 'react-navigation';
 
+import ScreenHome from './ScreenHome';
 import ScreenListMenu from './ScreenListMenu';
-import LandingPageText from './components/LandingPageText';
-
-class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <ImageBackground style={styles.content} source={require('./images/sample.jpg')}>
-        <LandingPageText/>
-        </ImageBackground>
-      </View>
-    );
-  }
-}
 
 export default createBottomTabNavigator(
   {
     Home: {
-      screen: App,
+      screen: ScreenHome,
       navigationOptions:{
         tabBarIcon: ({focused, tintColor}) => {
-          return <Image source={require('./images/nav_button_home.png')} style={{tintColor:tintColor}}/>
+          return <Image
+            source={require('./images/nav_button_home.png')}
+            style={{tintColor:tintColor}}
+          />
         }
       }
     },
@@ -31,7 +22,10 @@ export default createBottomTabNavigator(
       screen: ScreenListMenu,
       navigationOptions:{
         tabBarIcon: ({focused, tintColor}) => {
-          return <Image source={require('./images/nav_button_orders.png')} style={{tintColor:tintColor}}/>
+          return <Image
+            source={require('./images/nav_button_orders.png')}
+            style={{tintColor:tintColor}}
+          />
         }
       }
     }
@@ -43,8 +37,3 @@ export default createBottomTabNavigator(
     }
   }
 );
-
-const styles = StyleSheet.create({
-  container: {flex: 1},
-  content: {flex: 1, height: null, width: null}
-});
