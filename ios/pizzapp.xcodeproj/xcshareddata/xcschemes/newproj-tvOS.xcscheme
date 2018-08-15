@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "newproj-tvOS.app"
-               BlueprintName = "newproj-tvOS"
-               ReferencedContainer = "container:newproj.xcodeproj">
+               BuildableName = "pizzapp-tvOS.app"
+               BlueprintName = "pizzapp-tvOS"
+               ReferencedContainer = "container:pizzapp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "newproj-tvOSTests.xctest"
-               BlueprintName = "newproj-tvOSTests"
-               ReferencedContainer = "container:newproj.xcodeproj">
+               BuildableName = "pizzapp-tvOSTests.xctest"
+               BlueprintName = "pizzapp-tvOSTests"
+               ReferencedContainer = "container:pizzapp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "newproj-tvOSTests.xctest"
-               BlueprintName = "newproj-tvOSTests"
-               ReferencedContainer = "container:newproj.xcodeproj">
+               BuildableName = "pizzapp-tvOSTests.xctest"
+               BlueprintName = "pizzapp-tvOSTests"
+               ReferencedContainer = "container:pizzapp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "newproj-tvOS.app"
-            BlueprintName = "newproj-tvOS"
-            ReferencedContainer = "container:newproj.xcodeproj">
+            BuildableName = "pizzapp-tvOS.app"
+            BlueprintName = "pizzapp-tvOS"
+            ReferencedContainer = "container:pizzapp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "newproj-tvOS.app"
-            BlueprintName = "newproj-tvOS"
-            ReferencedContainer = "container:newproj.xcodeproj">
+            BuildableName = "pizzapp-tvOS.app"
+            BlueprintName = "pizzapp-tvOS"
+            ReferencedContainer = "container:pizzapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "newproj-tvOS.app"
-            BlueprintName = "newproj-tvOS"
-            ReferencedContainer = "container:newproj.xcodeproj">
+            BuildableName = "pizzapp-tvOS.app"
+            BlueprintName = "pizzapp-tvOS"
+            ReferencedContainer = "container:pizzapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

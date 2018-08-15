@@ -1,4 +1,4 @@
-package com.newproj;
+package com.pizzapp;
 
 import android.app.Application;
 
