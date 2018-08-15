@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-import {Image, View, StyleSheet} from 'react-native';
+import {ImageBackground, Image, View, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from 'react-navigation';
 
-import Header from './components/Header';
 import ScreenListMenu from './ScreenListMenu';
+import LandingPageText from './components/LandingPageText';
 
 class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image style={styles.content} source={require('./images/sample.jpg')}/>
+        <ImageBackground style={styles.content} source={require('./images/sample.jpg')}>
+        <LandingPageText/>
+        </ImageBackground>
       </View>
     );
   }
