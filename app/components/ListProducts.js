@@ -15,6 +15,7 @@ class ListProducts extends Component {
                     description={item.desc}
                     price={item.price}
                     image={item.image}
+                    onProductSelection={this.props.onProductSelection}
                 />
             }}
             style={styles.content}

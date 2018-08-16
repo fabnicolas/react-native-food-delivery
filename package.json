@@ -5,12 +5,13 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "generate-keyfile": "keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000",
-    "compile-apk": "cd android; ./gradlew assembleRelease",
+    "compile-apk": "cd android ; ./gradlew assembleRelease",
     "test": "jest"
   },
   "dependencies": {
     "react": "16.4.1",
     "react-native": "0.55.4",
+    "react-native-popup-dialog": "^0.15.0",
     "react-navigation": "^2.11.2"
   },
   "devDependencies": {

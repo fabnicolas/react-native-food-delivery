@@ -1,11 +1,24 @@
 import React, {Component} from 'react';
-import {Dimensions, TouchableOpacity, Image, Text, View, StyleSheet} from 'react-native';
+import {TouchableOpacity, Image, Text, View, StyleSheet} from 'react-native';
 
 class Product extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    _onProductSelection=()=>{
+        this.props.onProductSelection({
+            name: this.props.name,
+            image: this.props.image,
+            description: this.props.description,
+            price: this.props.price
+        });
+    }
+
     render() {
       return (
         <View style={[styles.container, this.props.style]}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this._onProductSelection}>
             <Image style={styles.image_product} source={this.props.image}/>
             <View style={styles.container_product}>
               <Text style={styles.product_name}>{this.props.name}</Text>
