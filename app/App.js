@@ -1,11 +1,11 @@
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
-import {createBottomTabNavigator} from 'react-navigation';
+import {createMaterialTopTabNavigator} from 'react-navigation';
 
 import ScreenHome from './ScreenHome';
 import ScreenListMenu from './ScreenListMenu';
 
-export default createBottomTabNavigator(
+export default createMaterialTopTabNavigator(
   {
     Home: {
       screen: ScreenHome,
@@ -34,6 +34,19 @@ export default createBottomTabNavigator(
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
-    }
+      activeTintColor: 'blue',
+      inactiveTintColor: 'grey',
+      style: {
+        backgroundColor: '#F2F2F2',
+        borderTopColor: 'grey',
+        borderWidth: 0.1,
+      },
+      iconStyle: {width: 64, height: 46},
+      tabStyle: {padding: 0, margin:0},
+      indicatorStyle: {height: 1},
+    },
+    tabBarPosition: 'bottom',
+    swipeEnabled: true,
+    animationEnabled: true
   }
 );

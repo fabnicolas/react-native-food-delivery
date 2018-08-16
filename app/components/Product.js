@@ -4,18 +4,18 @@ import {Dimensions, TouchableOpacity, Image, Text, View, StyleSheet} from 'react
 class Product extends Component {
     render() {
       return (
-          <View style={[styles.container, this.props.style]}>
-            <TouchableOpacity>
-                <Image style={{height: 200, width: null}} source={require('../images/flat1.jpg')}/>
-                <View style={{padding: '3%', width: '130%'}}>
-                    <Text style={{color: 'black'}}>{this.props.name}</Text>
-                    <Text style={{fontSize: 12}}>{this.props.description}</Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: '5%'}}>
-                        <Text style={{color:'#FF8C00'}}>{this.props.price+" €"}</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
-          </View>
+        <View style={[styles.container, this.props.style]}>
+          <TouchableOpacity>
+            <Image style={styles.image_product} source={this.props.image}/>
+            <View style={styles.container_product}>
+              <Text style={styles.product_name}>{this.props.name}</Text>
+              <Text style={styles.product_description}>{this.props.description}</Text>
+              <View style={styles.product_price_container}>
+                <Text style={styles.product_price_content}>{this.props.price+' €'}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        </View>
       );
     }
 }
@@ -27,6 +27,24 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 2,
         borderColor: '#000',
+    },
+    image_product: {
+        height: 200,
+        width: null
+    },
+    container_product: {
+        padding: '3%',
+        width: '130%'
+    },
+    product_name: {color: 'black'},
+    product_description: {fontSize: 12},
+    product_price_container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: '5%'
+    },
+    product_price_content: {
+        color:'#FF8C00'
     }
 });
 
