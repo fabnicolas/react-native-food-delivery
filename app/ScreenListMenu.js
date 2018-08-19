@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import Header from './components/Header';
 import ListProducts from './components/ListProducts';
@@ -29,6 +29,11 @@ class ScreenListMenu extends Component {
 
     closeDialog = ()=>{this.setState({show_dialog: false})}
 
+    onAddToCart = ()=>{
+      // Temporary
+      this.setState({show_dialog: false})
+    }
+
     render() {
       return (
         <View style={[styles.container, this.props.style]}>
@@ -44,6 +49,7 @@ class ScreenListMenu extends Component {
           <ProductDialog
             show={this.state.show_dialog}
             onDismissed={this.closeDialog}
+            onAddToCart={this.onAddToCart}
             product_info={this.state.product_info}
           />
         </View>
@@ -55,9 +61,6 @@ const styles = StyleSheet.create({
     container: {flex: 1},
     header: {flex: 1},
     content: {flex: 8},
-    dialog_view: {flexDirection: 'column', alignItems: 'center'},
-    dialog_image: {height: 150, width: 300},
-    dialog_description: {width: 300}
 });
 
 export default ScreenListMenu;

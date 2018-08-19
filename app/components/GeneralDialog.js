@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import PopupDialog, {DialogTitle, SlideAnimation} from 'react-native-popup-dialog';
 
 const slideAnimation = new SlideAnimation({slideFrom: 'bottom'});
