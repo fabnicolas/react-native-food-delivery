@@ -4,7 +4,7 @@ import {Image, Text, View, StyleSheet} from 'react-native';
 import Header from './components/Header';
 import ListProducts from './components/ListProducts';
 import ImageAssets from './utils/ImageAssets';
-import GeneralDialog from './components/GeneralDialog';
+import ProductDialog from './components/ProductDialog';
 
 class ScreenListMenu extends Component {
     constructor(props){
@@ -41,18 +41,11 @@ class ScreenListMenu extends Component {
           ]}
           onProductSelection={this.showDialog}
           style={styles.content}/>
-          <GeneralDialog
+          <ProductDialog
             show={this.state.show_dialog}
             onDismissed={this.closeDialog}
-            title={"Informazioni su: "+this.state.product_info.name}
-            >
-            <View style={styles.dialog_view}>
-              <Text>{this.state.product_info.name}</Text>
-              <Image style={styles.dialog_image} source={this.state.product_info.image}/>
-              <Text style={styles.dialog_description}>{this.state.product_info.description}</Text>
-              <Text>Prezzo: {this.state.product_info.price} €</Text>
-            </View>
-          </GeneralDialog>
+            product_info={this.state.product_info}
+          />
         </View>
       );
     }
