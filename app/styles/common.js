@@ -1,10 +1,7 @@
-import { StyleSheet } from 'react-native';
-
-var CommonStyles={
+let CommonStyles={
   button: {
-    flex: 1,
     alignItems: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: 'red',
   },
   button_text: {
     color: 'white',

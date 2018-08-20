@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {ImageBackground, Image, View, StyleSheet} from 'react-native';
 
-import LandingPageText from './components/LandingPageText';
+import LandingPageText from '../general/LandingPageText';
 
 class ScreenHome extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ImageBackground style={styles.content} source={require('./images/sample.jpg')}>
+        <ImageBackground style={styles.content} source={require('../../images/sample.jpg')}>
         <LandingPageText/>
         </ImageBackground>
       </View>

@@ -1,7 +1,7 @@
 	import React, {Component} from 'react';
   import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 
-  import CommonStyles from '../styles/common';
+  import CommonStyles from '../../styles/common';
 
   class ProductCounter extends Component {
     constructor(props){
@@ -35,13 +35,17 @@
 
   const styles = StyleSheet.create({
     container: {
-      flex: 1, 
+      flex: 0,
       flexDirection: 'row'
     },
-    button: CommonStyles.button,
+    button: {...CommonStyles.button, ...{
+      flex: 1,
+      flexBasis: 15,
+    }},
     button_text: CommonStyles.button_text,
     text: {
       flex: 1,
+      flexBasis: 15,
       textAlign: 'center',
       borderRadius: 4,
       borderWidth: 0.5,

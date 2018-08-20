@@ -2,8 +2,8 @@ import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {createMaterialTopTabNavigator} from 'react-navigation';
 
-import ScreenHome from './ScreenHome';
-import ScreenListMenu from './ScreenListMenu';
+import ScreenHome from './components/screens/ScreenHome';
+import ScreenListMenu from './components/screens/ScreenListMenu';
 
 export default createMaterialTopTabNavigator(
   {

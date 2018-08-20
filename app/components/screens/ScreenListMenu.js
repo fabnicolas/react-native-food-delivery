@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 
-import Header from './components/Header';
-import ListProducts from './components/ListProducts';
-import ImageAssets from './utils/ImageAssets';
-import ProductDialog from './components/ProductDialog';
+import Header from '../headers/Header';
+import ListProducts from '../product/ListProducts';
+import ImageAssets from '../../utils/ImageAssets';
+import ProductDialog from '../dialogs/ProductDialog';
 
 class ScreenListMenu extends Component {
     constructor(props){
