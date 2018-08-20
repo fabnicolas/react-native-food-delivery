@@ -5,6 +5,29 @@ import {TabNavigator} from 'react-navigation';
 import ScreenHome from './components/screens/ScreenHome';
 import ScreenListMenu from './components/screens/ScreenListMenu';
 
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      cart: []
+    }
+  }
+
+  makeScreenProps=()=>{
+    let onAddToCart = (product, amount)=>{
+      let cart = this.state.cart;
+      cart.push({key: product.name, quantity: amount})
+      this.setState({cart: cart});
+    }
+    return {
+      ...this.state,
+      onAddToCart
+    }
+  }
+
+  render() {return (<TabbedApp screenProps={this.makeScreenProps()}/>);}
+}
+
 const tabBarIconizer=(image) => ({focused, tintColor}) => {
   return <Image source={image} style={{tintColor:tintColor}}/>
 }
@@ -12,7 +35,9 @@ const tabBarIconizer=(image) => ({focused, tintColor}) => {
 const TabbedApp = TabNavigator({
   Home: {
     screen: ScreenHome,
-    navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_home.png'))}
+    navigationOptions:{
+      tabBarIcon: tabBarIconizer(require('./images/nav_button_home.png'))
+    }
   },
   Menu: {
     screen: ScreenListMenu,
@@ -38,9 +63,5 @@ const TabbedApp = TabNavigator({
   swipeEnabled: true,
   animationEnabled: true
 });
-
-class App extends Component {
-  render() {return (<TabbedApp/>);}
-}
 
 export default App;
