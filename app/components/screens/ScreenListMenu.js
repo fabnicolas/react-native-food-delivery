@@ -30,8 +30,8 @@ class ScreenListMenu extends Component {
     closeDialog = ()=>{this.setState({show_dialog: false})}
 
     onAddToCart = ()=>{
-      // Temporary
-      this.setState({show_dialog: false})
+      this.setState({show_dialog: false});
+      this.props.onAddToCart(this.state.product_info, arguments);
     }
 
     render() {
