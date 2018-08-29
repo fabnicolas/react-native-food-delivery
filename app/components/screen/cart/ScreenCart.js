@@ -7,9 +7,27 @@ import CartProduct from './CartProduct';
 import CommonStyles from '../../../styles/common';
 
 class ScreenCart extends Component {
+  isListEmpty = () => {
+    return (this.props.screenProps.cart.length == 0);
+  }
+
   onEmptyList = () => {
-    if(this.props.screenProps.cart.length != 0) return null;
-    return (<Text>Test</Text>);
+    if(!this.isListEmpty()) return null;
+    return (
+      <View style={styles.content_empty}>
+        <Text>Ops!</Text>
+        <Text>Non ci sono elementi nel carrello.</Text>
+      </View>
+    );
+  }
+
+  button_buy = () => {
+    if(this.isListEmpty()) return null;
+    return (
+      <TouchableOpacity style={styles.button_buy}>
+        <Text style={styles.button_addtocart_text}>Ordina i prodotti selezionati</Text>
+      </TouchableOpacity>
+    );
   }
 
   render() {
@@ -28,13 +46,11 @@ class ScreenCart extends Component {
                 quantity={item.quantity}
               />
             }}
-            style={styles.content}
+            contentContainerStyle={[{flexGrow: 1}, !this.isListEmpty() ? null : {justifyContent: 'center'}]}
             ListFooterComponent={this.onEmptyList}
           />
         </View>
-        <TouchableOpacity style={styles.button_buy}>
-          <Text style={styles.button_addtocart_text}>Aggiungi al carrello</Text>
-        </TouchableOpacity>
+        {this.button_buy()}
       </View>
     );
   }
@@ -44,6 +60,7 @@ const styles = StyleSheet.create({
   container: {flex: 1},
   header: {flex: 1, backgroundColor: '#00ff00'},
   content: {flex: 11},
+  content_empty: {flex: 1, justifyContent: 'center', alignItems: 'center'},
   button_buy: {
     ...CommonStyles.button, ...{
       flex: 0.5,
@@ -55,7 +72,7 @@ const styles = StyleSheet.create({
     ...CommonStyles.button_text, ...{
       color: 'white'
     }
-  }
+  },
 });
 
 export default ScreenCart;

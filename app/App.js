@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Image} from 'react-native';
+import {Image, View} from 'react-native';
 import {createMaterialTopTabNavigator} from 'react-navigation';
+import Toast from 'react-native-easy-toast';
 
 import ScreenHome from './components/screen/home/ScreenHome';
 import ScreenListMenu from './components/screen/menu/ScreenListMenu';
@@ -28,6 +29,8 @@ class App extends Component {
       this.setState({
         cart: cart,
         cartListUpdateFlag: !this.state.cartListUpdateFlag
+      }, ()=>{
+        this.refs.toast.show('Prodotto aggiunto al carrello!', 2000);
       });
     }
     return {
@@ -36,7 +39,14 @@ class App extends Component {
     }
   }
 
-  render() {return (<TabbedApp screenProps={this.makeScreenProps()}/>);}
+  render() {
+    return (
+      <View style={{flex:1}}>
+        <TabbedApp screenProps={this.makeScreenProps()}/>
+        <Toast ref="toast"/>
+      </View>
+      );
+    }
 }
 
 const tabBarIconizer=(image) => ({focused, tintColor}) => {
