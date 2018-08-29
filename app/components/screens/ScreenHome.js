@@ -13,7 +13,7 @@ class ScreenHome extends Component {
               Benvenuto in
             </Text>
             <Text style={styles.mainText2}>
-              PizzApp!
+              Pizza!
             </Text>
             <Text style={styles.subText}>
               La tua pizzeria di fiducia.

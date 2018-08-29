@@ -20,16 +20,16 @@ class ProductDialog extends Component {
       <GeneralDialog
         show={this.props.show}
         onDismissed={this.props.onDismissed}
-        title={"Informazioni su: " + this.props.product_info.name}
+        title={"Informazioni su: " + this.props.product.name}
       >
         <View style={styles.view_product_info}>
-          <Text>{this.props.product_info.name}</Text>
-          <Image style={styles.image} source={this.props.product_info.image} />
-          <Text style={styles.description}>{this.props.product_info.description}</Text>
+          <Text>{this.props.product.name}</Text>
+          <Image style={styles.image} source={this.props.product.image} />
+          <Text style={styles.description}>{this.props.product.description}</Text>
 
           <View style={styles.form}>
             <ProductCounter style={styles.counter} onChange={this.onCounterChange} />
-            <Text>Prezzo: {this.props.product_info.price} €</Text>
+            <Text>Prezzo: {this.props.product.price} €</Text>
             <TouchableOpacity style={styles.button_addtocart} onPress={this.onAddToCart}>
               <Text style={styles.button_addtocart_text}>Aggiungi al carrello</Text>
             </TouchableOpacity>

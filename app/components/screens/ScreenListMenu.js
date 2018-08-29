@@ -10,8 +10,8 @@ class ScreenListMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show_dialog: false,
-      product_info: {
+      is_dialog_visible: false,
+      product: {
         name: null,
         image: null,
         description: null,
@@ -20,24 +20,24 @@ class ScreenListMenu extends Component {
     };
   }
 
-  showDialog = (product_info) => {
+  showDialog = (product) => {
     this.setState({
-      show_dialog: !this.state.show_dialog,
-      product_info: product_info
+      is_dialog_visible: !this.state.is_dialog_visible,
+      product: product
     });
   }
 
-  closeDialog = () => {this.setState({show_dialog: false})}
+  closeDialog = () => {this.setState({is_dialog_visible: false})}
 
   onAddToCart = (counter) => {
-    this.props.screenProps.onAddToCart(this.state.product_info, counter);
-    this.setState({show_dialog: false});
+    this.props.screenProps.onAddToCart(this.state.product, counter);
+    this.setState({is_dialog_visible: false});
   }
 
   render() {
     return (
       <View style={[styles.container, this.props.style]}>
-        <Header style={styles.header} />
+        <Header style={styles.header}>PizzApp</Header>
         <ListProducts
           data={[
             {key: 'Misto fritto', desc: 'Piatto da gustare con gli amici in compagnia, con un mix di gusti e sapori che rende felici.', price: '2.80', image: ImageAssets.flat1},
@@ -47,10 +47,10 @@ class ScreenListMenu extends Component {
           onProductSelection={this.showDialog}
           style={styles.content} />
         <ProductDialog
-          show={this.state.show_dialog}
+          show={this.state.is_dialog_visible}
           onDismissed={this.closeDialog}
           onAddToCart={this.onAddToCart}
-          product_info={this.state.product_info}
+          product={this.state.product}
         />
       </View>
     );
@@ -59,8 +59,8 @@ class ScreenListMenu extends Component {
 
 const styles = StyleSheet.create({
   container: {flex: 1},
-  header: {flex: 1},
-  content: {flex: 8},
+  header: {flex: 1, backgroundColor: '#d90315'},
+  content: {flex: 11},
 });
 
 export default ScreenListMenu;

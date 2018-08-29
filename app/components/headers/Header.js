@@ -4,8 +4,8 @@ import {Text, View, StyleSheet} from 'react-native';
 class Header extends Component {
     render() {
       return (
-          <View style={styles.container}>
-            <Text style={styles.text}>PizzApp</Text>
+          <View style={[styles.container, this.props.style]}>
+            <Text style={styles.text}>{this.props.children}</Text>
           </View>
       );
     }

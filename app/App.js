@@ -4,12 +4,18 @@ import {TabNavigator} from 'react-navigation';
 
 import ScreenHome from './components/screens/ScreenHome';
 import ScreenListMenu from './components/screens/ScreenListMenu';
+import ScreenCart from './components/screens/ScreenCart';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      cart: []
+      cart: [
+        {key: 'Sabrina', quantity: 2},
+        {key: 'Volpe', quantity: 999},
+        {key: 'Fabio', quantity: 4}
+      ],
+      toggleUpdate: false
     }
   }
 
@@ -17,7 +23,9 @@ class App extends Component {
     let onAddToCart = (product, amount)=>{
       let cart = this.state.cart;
       cart.push({key: product.name, quantity: amount})
-      this.setState({cart: cart});
+      this.setState({cart: cart, toggleUpdate: !this.state.toggleUpdate}, function(){
+        console.log("NEW STATE="+JSON.stringify(this.state.cart))
+      });
     }
     return {
       ...this.state,
@@ -35,12 +43,14 @@ const tabBarIconizer=(image) => ({focused, tintColor}) => {
 const TabbedApp = TabNavigator({
   Home: {
     screen: ScreenHome,
-    navigationOptions:{
-      tabBarIcon: tabBarIconizer(require('./images/nav_button_home.png'))
-    }
+    navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_home.png'))}
   },
   Menu: {
     screen: ScreenListMenu,
+    navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_menu.png'))}
+  },
+  Cart: {
+    screen: ScreenCart,
     navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_orders.png'))}
   }
 },
