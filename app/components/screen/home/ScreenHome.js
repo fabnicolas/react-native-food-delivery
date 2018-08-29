@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { ImageBackground, Text, View, StyleSheet } from 'react-native';
+import React, {Component} from 'react';
+import {ImageBackground, Text, View, StyleSheet} from 'react-native';
 
-import ImageContent from '../general/ImageContent';
+import ImageContent from '../../library/ImageContent';
 
 class ScreenHome extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ImageBackground style={styles.content} source={require('../../images/sample.jpg')}>
+        <ImageBackground style={styles.content} source={require('../../../images/sample.jpg')}>
           <ImageContent>
             <Text style={styles.mainText1}>
               Benvenuto in
@@ -30,8 +30,8 @@ class ScreenHome extends Component {
 
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  content: { flex: 1, height: null, width: null },
+  container: {flex: 1},
+  content: {flex: 1, height: null, width: null},
   mainText1: {
     color: 'white',
     fontFamily: 'serif',

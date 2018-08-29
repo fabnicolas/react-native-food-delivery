@@ -2,27 +2,29 @@ import React, {Component} from 'react';
 import {Image} from 'react-native';
 import {createMaterialTopTabNavigator} from 'react-navigation';
 
-import ScreenHome from './components/screens/ScreenHome';
-import ScreenListMenu from './components/screens/ScreenListMenu';
-import ScreenCart from './components/screens/ScreenCart';
+import ScreenHome from './components/screen/home/ScreenHome';
+import ScreenListMenu from './components/screen/menu/ScreenListMenu';
+import ScreenCart from './components/screen/cart/ScreenCart';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      cart: [
-        {key: 'Sabrina', quantity: 2},
-        {key: 'Volpe', quantity: 999},
-        {key: 'Fabio', quantity: 4}
-      ],
+      cart: [],
       cartListUpdateFlag: false
     }
   }
 
   makeScreenProps=()=>{
     let onAddToCart = (product, amount)=>{
-      let cart = this.state.cart;
-      cart.push({key: product.name, quantity: amount})
+      let cart = Object.assign([], this.state.cart);
+      cart.push({
+        key: product.name,
+        image: product.image,
+        price: product.price,
+        quantity: amount
+      });
+      console.log("cart="+JSON.stringify(cart));
       this.setState({
         cart: cart,
         cartListUpdateFlag: !this.state.cartListUpdateFlag

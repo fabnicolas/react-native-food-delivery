@@ -20,7 +20,7 @@ class Product extends Component {
         <View style={[styles.container, this.props.style]}>
           <TouchableOpacity onPress={this._onProductSelection}>
             <Image style={styles.image_product} source={this.props.image}/>
-            <View style={styles.container_product}>
+            <View style={styles.container_product_data}>
               <Text style={styles.product_name}>{this.props.name}</Text>
               <Text style={styles.product_description}>{this.props.description}</Text>
               <View style={styles.product_price_container}>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         height: 200,
         width: null
     },
-    container_product: {
+    container_product_data: {
         padding: '3%',
         width: '130%'
     },

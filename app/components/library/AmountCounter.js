@@ -3,24 +3,26 @@ import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 
 import CommonStyles from '../../styles/common';
 
-class ProductCounter extends Component {
+class AmountCounter extends Component {
   constructor(props) {
     super(props);
-    this.state = {counter: 1}
+    this.state = {counter: this.props.initialValue || 1}
   }
 
   decreaseCounter = () => {
     let amount = this.state.counter;
     if(amount > 1){
       amount-=1;
-      this.setState({counter: amount});
+      this.setState({counter: amount}, ()=>{
+        this.onCounterChange(amount);
+      });
     }
-    this.onCounterChange(amount);
   }
 
   increaseCounter = () => {
-    this.setState({counter: this.state.counter + 1});
-    this.onCounterChange(this.state.counter);
+    this.setState({counter: this.state.counter + 1}, ()=>{
+      this.onCounterChange(this.state.counter);
+    });
   }
 
   onCounterChange = (counter) => {
@@ -64,4 +66,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ProductCounter;
+export default AmountCounter;
