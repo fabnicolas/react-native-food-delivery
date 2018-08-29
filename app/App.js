@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Image} from 'react-native';
-import {TabNavigator} from 'react-navigation';
+import {createMaterialTopTabNavigator} from 'react-navigation';
 
 import ScreenHome from './components/screens/ScreenHome';
 import ScreenListMenu from './components/screens/ScreenListMenu';
@@ -15,7 +15,7 @@ class App extends Component {
         {key: 'Volpe', quantity: 999},
         {key: 'Fabio', quantity: 4}
       ],
-      toggleUpdate: false
+      cartListUpdateFlag: false
     }
   }
 
@@ -23,8 +23,9 @@ class App extends Component {
     let onAddToCart = (product, amount)=>{
       let cart = this.state.cart;
       cart.push({key: product.name, quantity: amount})
-      this.setState({cart: cart, toggleUpdate: !this.state.toggleUpdate}, function(){
-        console.log("NEW STATE="+JSON.stringify(this.state.cart))
+      this.setState({
+        cart: cart,
+        cartListUpdateFlag: !this.state.cartListUpdateFlag
       });
     }
     return {
@@ -40,7 +41,7 @@ const tabBarIconizer=(image) => ({focused, tintColor}) => {
   return <Image source={image} style={{tintColor:tintColor}}/>
 }
 
-const TabbedApp = TabNavigator({
+const TabbedApp = createMaterialTopTabNavigator({
   Home: {
     screen: ScreenHome,
     navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_home.png'))}

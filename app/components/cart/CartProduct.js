@@ -19,7 +19,7 @@ class Product extends Component {
     return (
       <View style={[styles.container, this.props.style]}>
         <TouchableOpacity onPress={this._onProductSelection}>
-          <Image style={styles.image_product} source={this.props.thumbnail}></Image>
+          <Image style={styles.image_product} source={this.props.image}></Image>
           <View style={styles.container_product}>
             <Text style={styles.product_name}>{this.props.name}</Text>
             <Text style={styles.product_description}>{this.props.quantity}</Text>

@@ -12,7 +12,7 @@ class ScreenCart extends Component {
         <View style={styles.content}>
           <FlatList
             data={this.props.screenProps.cart}
-            extraData={this.props.screenProps.toggleUpdate}
+            extraData={this.props.screenProps.cartListUpdateFlag}
             renderItem={({item}) => {
               return <CartProduct
                 name={item.key}
