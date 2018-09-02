@@ -3,9 +3,12 @@ import {Image, View} from 'react-native';
 import {createMaterialTopTabNavigator} from 'react-navigation';
 import Toast from 'react-native-easy-toast';
 
+let screen_folder = './components/screen/home';
+
 import ScreenHome from './components/screen/home/ScreenHome';
 import ScreenListMenu from './components/screen/menu/ScreenListMenu';
 import ScreenCart from './components/screen/cart/ScreenCart';
+import ScreenCamera from './components/screen/camera/ScreenCamera';
 
 class App extends Component {
   constructor(props){
@@ -64,6 +67,10 @@ const TabbedApp = createMaterialTopTabNavigator({
   },
   Cart: {
     screen: ScreenCart,
+    navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_orders.png'))}
+  },
+  Photocamera: {
+    screen: ScreenCamera,
     navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_orders.png'))}
   }
 },
