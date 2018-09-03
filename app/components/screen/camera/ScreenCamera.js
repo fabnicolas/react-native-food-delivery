@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, Image, View, StyleSheet} from 'react-native';
 
-import Camera from 'react-native-camera';
+import {RNCamera} from 'react-native-camera';
 
 class ScreenCamera extends Component {
   constructor(props) {
@@ -17,30 +17,33 @@ class ScreenCamera extends Component {
     );
   }
 
-  takePicture() {
-    const options = {};
-    if(this.camera) {
-      this.camera.capture({metadata: options}).then(function(data) {
-        console.log(data);
-        this.setState({imagePath: data.path});
-      }.bind(this)).catch(function(err) {
-        console.error(err);
-      }.bind(this));
+
+  takePicture = async function() {
+    if (this.camera) {
+      const options = { quality: 0.5, base64: true };
+      const data = await this.camera.takePictureAsync(options)
+      this.setState({imagePath: data.uri})
     }
-  }
+  };
 
   render() {
     return (
       <View style={[styles.container, this.props.style]}>
-        <Camera ref={(cam) => {
+        <RNCamera ref={(cam) => {
             this.camera = cam;
           }}
+          ref={ref => {
+            this.camera = ref;
+          }}
+          style = {styles.preview}
+          type={RNCamera.Constants.Type.back}
+          flashMode={RNCamera.Constants.FlashMode.on}
+          permissionDialogTitle={'Permission to use camera'}
+          permissionDialogMessage={'We need your permission to use your camera phone'}
           onBarCodeRead={this.onBarCodeRead.bind(this)}
-          style={styles.preview}
-          aspect={Camera.constants.Aspect.fill}
-          captureTarget = {Camera.constants.CaptureTarget.disk}>
+          >
           <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
-        </Camera>
+        </RNCamera>
         <Image source={{ uri: this.state.imagePath }} style={styles.preview}/>
       </View>
     );
