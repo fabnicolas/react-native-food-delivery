@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
-import {createStackNavigator} from 'react-navigation';
+import {NavigationActions, createStackNavigator} from 'react-navigation';
 import Toast from 'react-native-easy-toast';
 
 import SplashScreen from 'react-native-splash-screen';
@@ -35,35 +35,58 @@ class App extends Component {
         cart: cart,
         cartListUpdateFlag: !this.state.cartListUpdateFlag
       }, () => {
-        this.refs.toast.show('Prodotto aggiunto al carrello!', 2000);
+        this.toast.show('Prodotto aggiunto al carrello!', 2000);
       });
+    }
+
+    let onPurchase = () => {
+      this.stacknavigator.dispatch(
+        NavigationActions.navigate({routeName: "Photocamera"})
+      );
     }
 
     return {
       ...this.state,
-      onAddToCart
+      onAddToCart,
+      onPurchase
     }
   }
   componentDidMount() {SplashScreen.hide();}
   render() {
     return (
       <View style={{flex: 1}}>
-        <StackedApp screenProps={this.appManager()} />
-        <Toast ref="toast" />
+        <StackedApp ref={ref => this.stacknavigator = ref} screenProps={this.appManager()} />
+        <Toast ref={ref => this.toast = ref} />
       </View>
     );
   }
 }
 
-const StackedApp = createStackNavigator({
-  Home: {screen: props => <TabbedApp screenProps={props.screenProps} />}
-})
+const StackedApp = createStackNavigator(
+  {
+    Home: {
+      screen: (props) => {
+        return (<TabbedApp
+          screenProps={{...props.screenProps, ...{stacknavigation: props.navigation}}}
+        />)
+      },
+      navigationOptions: {header: null},
+    },
+    Photocamera: {
+      screen: ScreenCamera,
+      navigationOptions: {
+        headerTransparent: true
+      }
+    }
+  },
+  {}
+)
 
 let TabbedApp = createCustomBottomTabNavigator([
   {name: "Home", component: ScreenHome, icon: require('./images/nav_button_home.png')},
   {name: "Menu", component: ScreenListMenu, icon: require('./images/nav_button_menu.png')},
   {name: "Cart", component: ScreenCart, icon: require('./images/nav_button_orders.png')},
-  {name: "Photocamera", component: ScreenCamera, icon: require('./images/nav_button_orders.png')},
+  //{name: "Photocamera", component: ScreenCamera, icon: require('./images/nav_button_orders.png')},
 ]);
 
 

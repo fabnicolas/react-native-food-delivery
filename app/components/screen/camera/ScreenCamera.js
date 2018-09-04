@@ -3,8 +3,6 @@ import {Image, View, StyleSheet} from 'react-native';
 
 import RNCameraExtended from '../../library/RNCameraExtended';
 
-import ImageAssets from '../../../utils/ImageAssets';
-
 class ScreenCamera extends Component {
   constructor(props) {
     super(props);

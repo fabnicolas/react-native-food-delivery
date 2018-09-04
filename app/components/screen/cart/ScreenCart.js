@@ -21,10 +21,15 @@ class ScreenCart extends Component {
     );
   }
 
-  button_buy = () => {
+  onPurchase = () => {
+    if(this.props.screenProps.onPurchase)
+      this.props.screenProps.onPurchase();
+  }
+
+  render_button_buy = () => {
     if(this.isListEmpty()) return null;
     return (
-      <TouchableOpacity style={styles.button_buy}>
+      <TouchableOpacity style={styles.button_buy} onPress={this.onPurchase}>
         <Text style={styles.button_addtocart_text}>Ordina i prodotti selezionati</Text>
       </TouchableOpacity>
     );
@@ -50,7 +55,7 @@ class ScreenCart extends Component {
             ListFooterComponent={this.onEmptyList}
           />
         </View>
-        {this.button_buy()}
+        {this.render_button_buy()}
       </View>
     );
   }
