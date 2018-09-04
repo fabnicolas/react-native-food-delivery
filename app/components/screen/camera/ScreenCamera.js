@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Text, Image, View, StyleSheet} from 'react-native';
+import {Image, View, StyleSheet} from 'react-native';
 
 import RNCameraExtended from '../../library/RNCameraExtended';
+
+import ImageAssets from '../../../utils/ImageAssets';
 
 class ScreenCamera extends Component {
   constructor(props) {
@@ -20,7 +22,9 @@ class ScreenCamera extends Component {
         <RNCameraExtended
           settings={{autofocus: "off", flash: "on", camera_type: "front"}}
           onCapture={this.onCapture}
-        />
+        >
+          <Image source={ImageAssets.camera_shutter} style={styles.camera_shutter}/>
+        </RNCameraExtended>
         <Image source={{uri: this.state.imagePath}} style={styles.preview} />
       </View>
     );
@@ -33,6 +37,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center'
+  },
+  camera_shutter: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    opacity: 0.7
   }
 });
 

@@ -52,6 +52,14 @@ class RNCameraExtended extends Component {
   };
 
   render() {
+    let camera_content;
+
+    if(this.props.children){
+      camera_content=this.props.children;
+    }else{
+      camera_content=(<Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>);
+    }
+
     return (
       <View style={[styles.container, this.props.style]}>
         <RNCamera
@@ -65,7 +73,7 @@ class RNCameraExtended extends Component {
           style={styles.preview}
           {...this.props.RNCameraOptions}
         >
-          <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+          {camera_content}
         </RNCamera>
       </View>
     );

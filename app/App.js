@@ -3,7 +3,7 @@ import {Image, View} from 'react-native';
 import {createMaterialTopTabNavigator} from 'react-navigation';
 import Toast from 'react-native-easy-toast';
 
-let screen_folder = './components/screen/home';
+import SplashScreen from 'react-native-splash-screen'
 
 import ScreenHome from './components/screen/home/ScreenHome';
 import ScreenListMenu from './components/screen/menu/ScreenListMenu';
@@ -17,6 +17,10 @@ class App extends Component {
       cart: [],
       cartListUpdateFlag: false
     }
+  }
+
+  componentDidMount(){
+    SplashScreen.hide();
   }
 
   makeScreenProps=()=>{
