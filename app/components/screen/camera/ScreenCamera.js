@@ -20,11 +20,9 @@ class ScreenCamera extends Component {
     return (
       <View style={[styles.container, this.props.style]}>
         <RNCameraExtended
-          settings={{autofocus: "off", flash: "on", camera_type: "front"}}
+          settings={{autofocus: "off", flash: "on", camera_type: "front", captureinput_type: "shutter"}}
           onCapture={this.onCapture}
-        >
-          <Image source={ImageAssets.camera_shutter} style={styles.camera_shutter}/>
-        </RNCameraExtended>
+        />
         <Image source={{uri: this.state.imagePath}} style={styles.preview} />
       </View>
     );
@@ -37,12 +35,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center'
-  },
-  camera_shutter: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
-    opacity: 0.7
   }
 });
 
