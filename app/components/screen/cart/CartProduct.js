@@ -9,7 +9,7 @@ class Product extends Component {
   }
 
   _onProductSelection = () => {
-    this.props.onProductSelection({
+    if(this.props.onProductSelection) this.props.onProductSelection({
       name: this.props.name,
       image: this.props.image,
       description: this.props.description,

@@ -57,3 +57,5 @@ buck-out/
 
 # Gradle
 gradle.properties
+replay*.log
+hs_err_pid*.log

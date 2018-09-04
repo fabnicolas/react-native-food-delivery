@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Image, View} from 'react-native';
-import {createMaterialTopTabNavigator} from 'react-navigation';
+import {View} from 'react-native';
+import {createStackNavigator} from 'react-navigation';
 import Toast from 'react-native-easy-toast';
 
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
+
+import {createCustomBottomTabNavigator} from './components/navigator/BottomTabNavigator';
 
 import ScreenHome from './components/screen/home/ScreenHome';
 import ScreenListMenu from './components/screen/menu/ScreenListMenu';
@@ -11,7 +13,7 @@ import ScreenCart from './components/screen/cart/ScreenCart';
 import ScreenCamera from './components/screen/camera/ScreenCamera';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       cart: [],
@@ -19,12 +21,8 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
-    SplashScreen.hide();
-  }
-
-  makeScreenProps=()=>{
-    let onAddToCart = (product, amount)=>{
+  appManager = () => {
+    let onAddToCart = (product, amount) => {
       let cart = Object.assign([], this.state.cart);
       cart.push({
         key: product.name,
@@ -32,70 +30,42 @@ class App extends Component {
         price: product.price,
         quantity: amount
       });
-      console.log("cart="+JSON.stringify(cart));
+      console.log("cart=" + JSON.stringify(cart));
       this.setState({
         cart: cart,
         cartListUpdateFlag: !this.state.cartListUpdateFlag
-      }, ()=>{
+      }, () => {
         this.refs.toast.show('Prodotto aggiunto al carrello!', 2000);
       });
     }
+
     return {
       ...this.state,
       onAddToCart
     }
   }
-
+  componentDidMount() {SplashScreen.hide();}
   render() {
     return (
-      <View style={{flex:1}}>
-        <TabbedApp screenProps={this.makeScreenProps()}/>
-        <Toast ref="toast"/>
+      <View style={{flex: 1}}>
+        <StackedApp screenProps={this.appManager()} />
+        <Toast ref="toast" />
       </View>
-      );
-    }
-}
-
-const tabBarIconizer=(image) => ({focused, tintColor}) => {
-  return <Image source={image} style={{tintColor:tintColor}}/>
-}
-
-const TabbedApp = createMaterialTopTabNavigator({
-  Home: {
-    screen: ScreenHome,
-    navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_home.png'))}
-  },
-  Menu: {
-    screen: ScreenListMenu,
-    navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_menu.png'))}
-  },
-  Cart: {
-    screen: ScreenCart,
-    navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_orders.png'))}
-  },
-  Photocamera: {
-    screen: ScreenCamera,
-    navigationOptions:{tabBarIcon: tabBarIconizer(require('./images/nav_button_orders.png'))}
+    );
   }
-},
-{
-  tabBarOptions: {
-    showIcon: true,
-    showLabel: false,
-    activeTintColor: 'blue',
-    inactiveTintColor: 'grey',
-    style: {
-      backgroundColor: '#F2F2F2',
-      borderTopColor: 'grey',
-      borderWidth: 0.1,
-    },
-    iconStyle: {width: 64, height: 46},
-    tabStyle: {padding: 0, margin:0},
-    indicatorStyle: {height: 1},
-  },
-  tabBarPosition: 'bottom',
-  swipeEnabled: true,
-  animationEnabled: true
-});
+}
+
+const StackedApp = createStackNavigator({
+  Home: {screen: props => <TabbedApp screenProps={props.screenProps} />}
+})
+
+let TabbedApp = createCustomBottomTabNavigator([
+  {name: "Home", component: ScreenHome, icon: require('./images/nav_button_home.png')},
+  {name: "Menu", component: ScreenListMenu, icon: require('./images/nav_button_menu.png')},
+  {name: "Cart", component: ScreenCart, icon: require('./images/nav_button_orders.png')},
+  {name: "Photocamera", component: ScreenCamera, icon: require('./images/nav_button_orders.png')},
+]);
+
+
 
 export default App;

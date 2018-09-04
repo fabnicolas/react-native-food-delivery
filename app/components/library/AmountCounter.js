@@ -26,7 +26,7 @@ class AmountCounter extends Component {
   }
 
   onCounterChange = (counter) => {
-    this.props.onChange(counter);
+    if(this.props.onChange) this.props.onChange(counter);
   }
 
   render() {
