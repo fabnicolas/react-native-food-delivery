@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, Image, View, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text, Image, View, StyleSheet} from 'react-native';
 
 import {RNCamera} from 'react-native-camera';
 
@@ -41,7 +41,7 @@ class RNCameraExtended extends Component {
       captureinput_type = options.captureinput_type;
     }
 
-    if(options.captureinput_image){
+    if(options.captureinput_image) {
       captureinput_image = options.captureinput_image;
     }
 
@@ -80,10 +80,14 @@ class RNCameraExtended extends Component {
           [CAPTURE]
           </Text>);
       } else if(this.state.captureinput_type == "shutter") {
-        camera_content = (<Image
-          style={styles.captureinput_shutter}
-          source={this.state.captureinput_image || ImageAssets.camera_shutter}
-        />);
+        camera_content = (
+          <TouchableOpacity activeOpacity={0.5} onPress={this.takePicture.bind(this)}>
+            <Image
+              style={styles.captureinput_shutter}
+              source={this.state.captureinput_image || ImageAssets.camera_shutter}
+            />
+          </TouchableOpacity>
+        );
       }
     }
 
