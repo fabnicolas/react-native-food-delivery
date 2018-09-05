@@ -9,8 +9,8 @@ class ScreenCamera extends Component {
     this.state = {imagePath: ""}
   }
 
-  onCapture=(data)=>{
-    console.log("data.uri="+data.uri)
+  onCapture = (data) => {
+    console.log("data.uri=" + data.uri)
     this.setState({imagePath: data.uri})
   }
 

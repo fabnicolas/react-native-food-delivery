@@ -3,6 +3,8 @@ import {FlatList, View, StyleSheet} from 'react-native';
 
 import Product from './Product';
 
+import ImageAssets from '../../../utils/ImageAssets';
+
 class ListProducts extends Component {
     render() {
       return (
@@ -14,7 +16,7 @@ class ListProducts extends Component {
                     name={item.key}
                     description={item.desc}
                     price={item.price}
-                    image={item.image}
+                    image={ImageAssets[item.image]}
                     onProductSelection={this.props.onProductSelection}
                 />
             }}

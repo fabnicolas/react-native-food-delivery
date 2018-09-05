@@ -5,9 +5,14 @@ import Header from '../../general/Header';
 import ListProducts from './ListProducts';
 import ProductDialog from './ProductDialog';
 
-import ImageAssets from '../../../utils/ImageAssets';
-
 class ScreenListMenu extends Component {
+  fetchProducts = (callback=undefined) => {
+    return fetch('https://finalgalaxy.altervista.org/applications/pizzapp_backend/product_list.php')
+      .then(response => response.json())
+      .then(responseJson => {if(callback) callback(responseJson)})
+      .catch((error) => console.error(error));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -17,9 +22,19 @@ class ScreenListMenu extends Component {
         image: null,
         description: null,
         price: null
-      }
+      },
+      available_products: []
     };
+
+    this.fetchProducts((products) => {
+      this.setState({
+        is_dialog_visible: this.state.is_dialog_visible,
+        product: this.state.product,
+        available_products: products
+      });
+    })
   }
+  
 
   showDialog = (product) => {
     this.setState({
@@ -40,11 +55,7 @@ class ScreenListMenu extends Component {
       <View style={[styles.container, this.props.style]}>
         <Header style={styles.header}>PizzApp</Header>
         <ListProducts
-          data={[
-            {key: 'Misto fritto', desc: 'Piatto da gustare con gli amici in compagnia, con un mix di gusti e sapori che rende felici.', price: '2.80', image: ImageAssets.flat1},
-            {key: 'Monster Burgher', desc: 'Come ingrassare in un pranzo.', price: '3.50', image: ImageAssets.flat2},
-            {key: 'Piatto 3', desc: 'Piatto 3', price: '666', image: ImageAssets.flat3},
-          ]}
+          data={this.state.available_products}
           onProductSelection={this.showDialog}
           style={styles.content} />
         <ProductDialog
